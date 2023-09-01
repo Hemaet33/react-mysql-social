@@ -8,6 +8,7 @@ import authRoutes from './routes/auth.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import multer from 'multer';
+const port = process.env.PORT || 8800;
 
 const app = express();
 
@@ -44,6 +45,6 @@ app.post('/api/upload', upload.single('file'),(req,res)=>{
   res.status(200).json("Image uploaded.");
 })
 
-app.listen(8800,()=>{
+app.listen(port,()=>{
   console.log(`Listening to the port 8800`);
 });
