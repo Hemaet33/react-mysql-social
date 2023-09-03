@@ -5,6 +5,7 @@ import likeRoutes from './routes/likes.js';
 import commentRoutes from './routes/comments.js';
 import relationshipsRoutes from './routes/relationships.js';
 import authRoutes from './routes/auth.js';
+import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import multer from 'multer';
 const port = process.env.PORT || 8800;
@@ -17,6 +18,7 @@ app.use((req, res, next)=>{
   next()
 })
 app.use(express.json());
+app.use(cors());
 app.use(cookieParser());
 
 app.use('/api/relationships', relationshipsRoutes);
