@@ -2,7 +2,6 @@ import { db } from "../connect.js";
 import jwt from 'jsonwebtoken';
 
 export const getUser = (req, res)=>{
-  const token = req.cookies.accessToken;
   if(!token) return res.status(401).json("Not logged in.");
 
   jwt.verify(token, "secretKey",(err, userInfo)=>{
