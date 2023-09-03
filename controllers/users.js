@@ -18,7 +18,6 @@ export const getUser = (req, res)=>{
 }
 
 export const updateUser = (req, res)=>{
-  // const token = req.cookies.accessToken;
   if(!token) return res.status(401).json("You did not log in.");
 
   jwt.verify(token, "secretKey",(err, userInfo)=>{
