@@ -9,7 +9,7 @@ export const getUser = (req, res)=>{
   const q = "SELECT users.id,users.name,users.coverPic,users.profilePic,users.city,users.website, posts.id, posts.desc, posts.img FROM users JOIN posts ON (users.id=posts.userId) WHERE users.id=?";
 
     db.query(q,[req.params.userId], (err, data)=>{
-      if(err) return res.status(500).json(err);
+      // if(err) return res.status(500).json(err);
       return res.status(200).json(data);
     });
   });
