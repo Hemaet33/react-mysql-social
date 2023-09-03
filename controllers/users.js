@@ -3,16 +3,13 @@ import jwt from 'jsonwebtoken';
 
 export const getUser = (req, res)=>{
 
-  jwt.verify(token, "secretKey",(err, userInfo)=>{
-    if(err) return res.status(403).json("Invalid token!");
 
   const q = "SELECT users.id,users.name,users.coverPic,users.profilePic,users.city,users.website, posts.id, posts.desc, posts.img FROM users JOIN posts ON (users.id=posts.userId) WHERE users.id=?";
 
     db.query(q,[req.params.userId], (err, data)=>{
-      // if(err) return res.status(500).json(err);
+      if(err) return res.status(500).json(err);
       return res.status(200).json(data);
     });
-  });
 }
 
 export const updateUser = (req, res)=>{
