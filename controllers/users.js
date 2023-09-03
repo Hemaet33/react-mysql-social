@@ -2,7 +2,11 @@ import { db } from "../connect.js";
 import jwt from 'jsonwebtoken';
 
 export const getUser = (req, res)=>{
+  const token = req.cookies.accessToken;
+  if(!token) return res.status(401).json("Not logged in.");
 
+  jwt.verify(token, "secretKey",(err, userInfo)=>{
+    if(err) return res.status(403).json("Invalid token!");
 
   const q = "SELECT users.id,users.name,users.coverPic,users.profilePic,users.city,users.website, posts.id, posts.desc, posts.img FROM users JOIN posts ON (users.id=posts.userId) WHERE users.id=?";
 
@@ -10,6 +14,7 @@ export const getUser = (req, res)=>{
       if(err) return res.status(500).json(err);
       return res.status(200).json(data);
     });
+  });
 }
 
 export const updateUser = (req, res)=>{
