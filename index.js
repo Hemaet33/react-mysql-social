@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 app.use(cors({
-  origin: "https://jovial-bienenstitch-6b8e36.netlify.app"
+  origin: "http://localhost:5173/"
 }));
 app.use(cookieParser());
 
