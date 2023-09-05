@@ -19,7 +19,7 @@ app.use((req, res, next)=>{
 })
 app.use(express.json());
 app.use(cors({
-  origin: "https://react-social-api.onrender.com/"
+  origin: "https://jovial-bienenstitch-6b8e36.netlify.app/"
 }));
 app.use(cookieParser());
 
