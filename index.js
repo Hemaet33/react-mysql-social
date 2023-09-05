@@ -18,7 +18,9 @@ app.use((req, res, next)=>{
   next()
 })
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: "https://react-social-api.onrender.com/"
+}));
 app.use(cookieParser());
 
 app.use('/api/relationships', relationshipsRoutes);
