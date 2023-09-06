@@ -50,7 +50,6 @@ export const login = (req, res)=>{
       const {password, ...others} = data[0];
   
       res.cookie("accessToken", token, {
-        expires:  new Date(Date.now()+(3*24*60*60*1000)),
         httpOnly:true,
         sameSite:"none",
         secure:true
