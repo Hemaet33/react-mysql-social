@@ -60,7 +60,7 @@ const upload = multer({storage:storage})
 
 app.post('/api/upload', upload.single('file'),async(req,res)=>{
   const result = await cloudinary.uploader.upload(req.file.path);
-  return res.status(200).json(result);
+  res.status(200).json(result);
 })
 
 app.listen(port,()=>{
