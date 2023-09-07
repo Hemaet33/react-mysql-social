@@ -65,7 +65,7 @@ app.post('/api/upload', upload.single('file'),(req,res)=>{
   //     data:result
   //   });
   // });
-  res.status(200).json({path:req.file.filename}) 
+  res.status(200).json({path:req.file.path}) 
 })
 
 app.listen(port,()=>{
