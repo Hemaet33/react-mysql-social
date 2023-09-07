@@ -36,19 +36,19 @@ app.use(cors({
 app.use(cookieParser());
 
 
-cloudinary.config({
-  cloud_name:"diiszoitk",
-  api_key:"123949768584217",
-  api_secret:"U8RXUrze8ixTBBZnV81Bm7VRV2g"
-});
-
-
 app.use('/api/relationships', relationshipsRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/likes', likeRoutes);
 app.use('/api/comments', commentRoutes);
 app.use('/api/auth', authRoutes);
+
+
+cloudinary.config({
+  cloud_name:"diiszoitk",
+  api_key:"123949768584217",
+  api_secret:"U8RXUrze8ixTBBZnV81Bm7VRV2g"
+});
 
 const storage = multer.diskStorage({
   filename: function(req, file, cb){
@@ -60,7 +60,7 @@ const upload = multer({storage:storage})
 
 app.post('/api/upload', upload.single('file'),(req,res)=>{
   cloudinary.uploader.upload(req.file.path, (error, result)=>{
-    return res.status(200).json(result.data);
+    return res.status(200).json(result);
   });
 })
 
