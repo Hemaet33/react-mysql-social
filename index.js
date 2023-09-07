@@ -11,12 +11,6 @@ import multer from 'multer';
 import cloudinary from 'cloudinary';
 const port = process.env.PORT || 8800;
 
-cloudinary.config({
-  cloud_name:"diiszoitk",
-  api_key:"123949768584217",
-  api_secret:"U8RXUrze8ixTBBZnV81Bm7VRV2g"
-});
-
 const app = express();
 
 //middlewares
@@ -40,6 +34,14 @@ app.use(cors({
   credentials:true
 }));
 app.use(cookieParser());
+
+
+cloudinary.config({
+  cloud_name:"diiszoitk",
+  api_key:"123949768584217",
+  api_secret:"U8RXUrze8ixTBBZnV81Bm7VRV2g"
+});
+
 
 app.use('/api/relationships', relationshipsRoutes);
 app.use('/api/users', userRoutes);
