@@ -60,7 +60,7 @@ const upload = multer({storage:storage})
 
 app.post('/api/upload', upload.single('file'),(req,res)=>{
   cloudinary.uploader.upload(req.file.path, (error, result)=>{
-    return res.status(200).json(result);
+    return res.status(200).json(result.data);
   });
 })
 
