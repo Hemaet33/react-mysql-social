@@ -50,7 +50,7 @@ app.use('/api/auth', authRoutes);
 
 const storage = multer.diskStorage({
   filename: function(req, file, cb){
-    return cb(null, file.originalname)
+    return cb(null, Date.now()+file.originalname)
   }
 })
 
