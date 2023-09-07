@@ -47,7 +47,8 @@ app.use('/api/auth', authRoutes);
 cloudinary.config({
   cloud_name:"diiszoitk",
   api_key:"123949768584217",
-  api_secret:"U8RXUrze8ixTBBZnV81Bm7VRV2g"
+  api_secret:"U8RXUrze8ixTBBZnV81Bm7VRV2g",
+  api_environment_variable:"CLOUDINARY_URL=cloudinary://123949768584217:U8RXUrze8ixTBBZnV81Bm7VRV2g@diiszoitk"
 });
 
 const storage = multer.diskStorage({
