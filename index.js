@@ -59,10 +59,8 @@ const storage = multer.diskStorage({
 const upload = multer({storage:storage})
 
 app.post('/api/upload', upload.single('file'),(req,res)=>{
-  cloudinary.uploader.upload(req.file.path, (error, result)=>{
-    console.log(result);
-    return res.status(200).json(result);
-  });
+  const result = cloudinary.uploader.upload(req.file.path);
+  return res.status(200).json(result);
 })
 
 app.listen(port,()=>{
