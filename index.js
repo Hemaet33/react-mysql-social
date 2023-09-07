@@ -8,7 +8,14 @@ import authRoutes from './routes/auth.js';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import multer from 'multer';
+import cloudinary from 'cloudinary';
 const port = process.env.PORT || 8800;
+
+cloudinary.config({
+  cloud_name:"diiszoitk",
+  api_key:"123949768584217",
+  api_secret:"U8RXUrze8ixTBBZnV81Bm7VRV2g"
+});
 
 const app = express();
 
@@ -42,9 +49,6 @@ app.use('/api/comments', commentRoutes);
 app.use('/api/auth', authRoutes);
 
 const storage = multer.diskStorage({
-  destination: function(req,file,cb){
-    cb(null, "http://localhost:5173/images/")
-  },
   filename: function(req, file, cb){
     cb(null, req.body.name)
   }
@@ -53,7 +57,14 @@ const storage = multer.diskStorage({
 const upload = multer({storage:storage})
 
 app.post('/api/upload', upload.single('file'),(req,res)=>{
-  res.status(200).json("Image uploaded.");
+  cloudinary.uploader.upload(req.file.path, (error, result)=>{
+    if(error) throw error;
+
+    res.status(200).json({
+      message:"Image uploaded.",
+      data:result
+    });
+  });
 })
 
 app.listen(port,()=>{
