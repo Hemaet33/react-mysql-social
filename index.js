@@ -47,8 +47,7 @@ app.use('/api/auth', authRoutes);
 cloudinary.config({
   cloud_name:"diiszoitk",
   api_key:"123949768584217",
-  api_secret:"U8RXUrze8ixTBBZnV81Bm7VRV2g",
-  api_environment_variable:"CLOUDINARY_URL=cloudinary://123949768584217:U8RXUrze8ixTBBZnV81Bm7VRV2g@diiszoitk"
+  api_secret:"U8RXUrze8ixTBBZnV81Bm7VRV2g"
 });
 
 const storage = multer.diskStorage({
@@ -61,6 +60,7 @@ const upload = multer({storage:storage})
 
 app.post('/api/upload', upload.single('file'),(req,res)=>{
   cloudinary.uploader.upload(req.file.path, (error, result)=>{
+    console.log(result);
     return res.status(200).json(result);
   });
 })
