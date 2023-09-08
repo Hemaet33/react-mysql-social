@@ -31,7 +31,7 @@ export const updateUser = (req, res)=>{
     req.body.website,
     req.body.profilePic,
     req.body.coverPic,
-    req.params.id
+    userInfo.id
   ]
 
     db.query(q, values, (err, data)=>{
