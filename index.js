@@ -60,9 +60,7 @@ const upload = multer({storage:storage})
 
 app.post('/api/upload', upload.single('file'),async(req,res)=>{
   console.log(req.file.path);
-  const result = await cloudinary.uploader.upload(req.file.path,{
-    folder:images
-  });
+  const result = await cloudinary.uploader.upload(req.file.path);
   res.status(200).json(result);
 })
 
