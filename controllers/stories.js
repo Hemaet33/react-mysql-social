@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { db } from '../connect';
+import { db } from '../connect.js';
 
 export const addStory = (req,res)=>{
   const token = req.cookies.accessToken;
