@@ -8,12 +8,12 @@ export const like = (req, res)=>{
   jwt.verify(token, "secretKey",(err, userInfo)=>{
     if(err) return res.status(403).json("Invalid token!");
 
-  const q = "INSERT INTO likes (`userId`, `postId`) VALUES(?)";
+    const q = "INSERT INTO likes (`userId`, `postId`) VALUES(?)";
 
-  const values = [
-    userInfo.id,
-    req.body.postId
-  ]
+    const values = [
+      userInfo.id,
+      req.body.postId
+    ]
 
     db.query(q,[values], (err, data)=>{
       if(err) return res.status(500).json(err);
