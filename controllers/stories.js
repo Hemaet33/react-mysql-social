@@ -29,7 +29,7 @@ export const getStory = (req,res)=>{
   jwt.verify(token, "secretKey", (err, userInfo)=>{
     if(err) return res.status(403).json("Invalid token!");
 
-    const q = "SELECT stories.*,users.name FROM stories JOIN users ON(stories.userId=users.id) WHERE stories.userId=?";
+    const q = "SELECT stories.*,users.name FROM stories JOIN users ON(stories.userId=users.id) LEFT JOIN relationships ON(stories.userId=relationships.followedUserId) WHERE relationships.followerUserId=?";
 
     const values = [
       userInfo.id
