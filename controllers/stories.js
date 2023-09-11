@@ -44,5 +44,5 @@ export const getStory = (req,res)=>{
 
 export const deleteStory = (req, res)=>{
   const time = Date.now();
-  return time;
+  return res.json(time);
 }
