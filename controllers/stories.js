@@ -43,6 +43,7 @@ export const getStory = (req,res)=>{
 }
 
 export const deleteStory = (req, res)=>{
-  const time = Date.now();
+  // const time = Date.now();
+  const q = "DELETE FROM stories WHERE stories.userId"
   return res.json(time);
 }
