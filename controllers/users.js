@@ -2,13 +2,13 @@ import { db } from "../connect.js";
 import jwt from 'jsonwebtoken';
 
 export const getUser = (req, res)=>{
+
+  const q = req.body.qu;
   const token = req.cookies.accessToken;
   if(!token) return res.status(401).json("You did not log in.");
 
   jwt.verify(token, "secretKey",(err, userInfo)=>{
     if(err) return res.status(403).json("Invalid token!");
-
-    const q = req.body.qu;
   
   const qp =q ? "SELECT users.id,users.name,users.coverPic,users.profilePic,users.city,users.website FROM users WHERE users.id=?" : "SELECT users.id,users.name,users.coverPic,users.profilePic,users.city,users.website, posts.desc, posts.img FROM users JOIN posts ON (users.id=posts.userId) WHERE users.id=?";
 
