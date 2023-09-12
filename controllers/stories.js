@@ -44,6 +44,11 @@ export const getStory = (req,res)=>{
 
 export const deleteStory = (req, res)=>{
   // const time = Date.now();
-  const q = "DELETE FROM stories WHERE stories.userId"
-  return res.json(time);
+  const q = "DELETE FROM stories WHERE stories.userId=?"
+
+  db.query(q, [req.params.userId],(err, data)=>{
+    if(err) return res.status(500).json(err);
+    return res.status(200).json("Stories have been deleted.");
+  });
+  
 }
