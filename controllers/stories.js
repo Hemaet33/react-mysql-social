@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { db } from '../connect.js';
+import moment from 'moment';
 
 export const addStory = (req,res)=>{
   const token = req.cookies.accessToken;
@@ -8,11 +9,12 @@ export const addStory = (req,res)=>{
   jwt.verify(token, "secretKey", (err, userInfo)=>{
     if(err) return res.status(403).json("Invalid token!");
 
-    const q = "INSERT INTO stories (`img`,`userId`) VALUES(?)";
+    const q = "INSERT INTO stories (`img`,`userId`,`createdAt`) VALUES(?)";
 
     const values = [
       req.body.img,
-      userInfo.id
+      userInfo.id,
+      moment(Date.now()).format("YYYY-MM-DD HH:mm:ss")
     ]
 
     db.query(q, [values], (err, data)=>{
