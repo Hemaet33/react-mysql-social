@@ -10,7 +10,7 @@ export const getUser = (req, res)=>{
 
     const q = req.query.qu;
   
-  const qp =q ? "SELECT users.id,users.name,users.coverPic,users.profilePic,users.city,users.website WHERE users.id=?" : "SELECT users.id,users.name,users.coverPic,users.profilePic,users.city,users.website, posts.desc, posts.img FROM users JOIN posts ON (users.id=posts.userId) WHERE users.id=?";
+  const qp =q ? "SELECT users.id,users.name,users.coverPic,users.profilePic,users.city,users.website FROM users WHERE users.id=?" : "SELECT users.id,users.name,users.coverPic,users.profilePic,users.city,users.website, posts.desc, posts.img FROM users JOIN posts ON (users.id=posts.userId) WHERE users.id=?";
 
   const values=[req.params.userId];
     db.query(qp,values, (err, data)=>{
