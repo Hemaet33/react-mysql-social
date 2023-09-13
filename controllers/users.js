@@ -65,6 +65,26 @@ export const getUsers = (req, res)=>{
   });
 }
 
+export const getFriends = (req, res)=>{
+  const token = req.cookies.accessToken;
+  if(!token) return res.status(401).json("You did not log in.");
+
+  jwt.verify(token, "secretKey",(err, userInfo)=>{
+    if(err) return res.status(403).json("Invalid token!");
+
+  const q = "SELECT users.id,users.profilePic,users.name FROM users JOIN relationships ON(users.id = relationships.followedUserId) WHERE users.id=?";
+
+  const values = [
+    userInfo.id
+  ]
+
+    db.query(q, values, (err, data)=>{
+      if(err) return res.status(500).json(err);
+      return res.status(200).json(data);
+    });
+  });
+}
+
 export const getPosts = (req, res)=>{
   const token = req.cookies.accessToken;
   if(!token) return res.status(401).json("You did not log in.");
