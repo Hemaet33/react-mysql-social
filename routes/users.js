@@ -5,6 +5,7 @@ const router = Express.Router();
 
 router.get('/post/:userId', getPosts);
 router.get('/profile/:userId', getUser);
+router.get('/profile/:userId/:qu', getUser);
 router.patch('/', updateUser);
 
 
