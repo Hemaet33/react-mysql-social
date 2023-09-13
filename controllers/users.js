@@ -52,7 +52,7 @@ export const getUsers = (req, res)=>{
   jwt.verify(token, "secretKey",(err, userInfo)=>{
     if(err) return res.status(403).json("Invalid token!");
 
-  const q = "SELECT users.id,users.profilePic,users.name FROM users INNER JOIN relationships ON(users.id <> relationships.followerUserId AND users.id <> ?) WHERE users.id=?";
+  const q = "SELECT users.id,users.profilePic,users.name FROM users INNER JOIN relationships ON(users.id <> relationships.followerUserId AND relationships.followerUserId <> ?) WHERE users.id=?";
 
   const values = [
     userInfo.id,
