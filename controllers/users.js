@@ -52,7 +52,7 @@ export const getUsers = (req, res)=>{
   jwt.verify(token, "secretKey",(err, userInfo)=>{
     if(err) return res.status(403).json("Invalid token!");
 
-  const q = "SELECT users.id FROM users JOIN relationships ON(users.id <> relationships.followedUserId) WHERE relationships.followerUserId <> ? AND users.id <> ?";
+  const q = "SELECT users.id FROM users WHERE users.id NOT IN (SELECT users.id FROM users JOIN relationships ON(users.id = relationships.followedUserId) WHERE relationships.followerUserId=?)";
 
   const values = [
     userInfo.id,
