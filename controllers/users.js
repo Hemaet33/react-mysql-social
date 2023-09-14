@@ -55,7 +55,6 @@ export const getUsers = (req, res)=>{
   const q = "SELECT users.id,users.profilePic,users.name FROM users JOIN relationships ON(users.id NOT IN (SELECT relationships.followedUserId FROM relationships WHERE relationships.followerUserId=?) AND users.id NOT IN (SELECT relationships.followerUserId FROM relationships WHERE relationships.followerUserId=?))";
 
   const values = [
-    userInfo.id,
     userInfo.id
   ]
 
