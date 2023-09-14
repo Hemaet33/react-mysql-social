@@ -54,7 +54,7 @@ export const login = (req, res)=>{
         httpOnly:true,
         sameSite:"none",
         secure:true
-      }).status(200).json(others); 
+      }).status(200).json(others);
   
     });
   }else{
