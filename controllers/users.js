@@ -52,10 +52,11 @@ export const getUsers = (req, res)=>{
   jwt.verify(token, "secretKey",(err, userInfo)=>{
     if(err) return res.status(403).json("Invalid token!");
 
-  const q = "SELECT users.id,users.profilePic,users.name FROM users JOIN relationships ON(users.id = relationships.followedUserId) WHERE relationships.followerUserId=?";
+  const q = "SELECT users.id,users.profilePic,users.name FROM users MINUS SELECT users.id,users.profilePic,users.name FROM users JOIN relationships ON(users.id = relationships.followedUserId) WHERE relationships.followerUserId=? AND users.id=?";
 
   const values = [
-    userInfo.id
+    userInfo.id,
+    userInfo.id,
   ]
 
     db.query(q, values, (err, data)=>{
