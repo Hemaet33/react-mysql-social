@@ -45,6 +45,26 @@ export const updateUser = (req, res)=>{
   });
 }
 
+export const deleteUser = (req, res)=>{
+  const token = req.cookies.accessToken;
+  if(!token) return res.status(401).json("You did not log in.");
+
+  jwt.verify(token, "secretKey",(err, userInfo)=>{
+    if(err) return res.status(403).json("Invalid token!");
+
+  const q = "DELETE FROM users WHERE `id`=?";
+
+  const values = [
+    userInfo.id
+  ]
+
+    db.query(q, values, (err, data)=>{
+      if(err) return res.status(500).json(err);
+      return res.status(200).json("Account Deleted");
+    });
+  });
+}
+
 export const getUsers = (req, res)=>{
   const token = req.cookies.accessToken;
   if(!token) return res.status(401).json("You did not log in.");
