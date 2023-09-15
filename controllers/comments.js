@@ -37,3 +37,25 @@ db.query(q,[values], (err, data)=>{
 });
   });
 }
+
+export const deleteComment = (req, res)=>{
+
+  const token = req.cookies.accessToken;
+  if(!token) return res.status(401).json("Not logged in.");
+
+  jwt.verify(token, "secretKey",(err, userInfo)=>{
+    if(err) return res.status(403).json("Invalid token!");
+
+
+  const q = "DELETE FROM comments WHERE id=?";
+
+  const values = [
+    req.params.commentId
+  ]
+
+db.query(q,values, (err, data)=>{
+  if(err) return res.status(500).json(err);
+  return res.status(200).json("Comment has been deleted.");
+});
+  });
+}
