@@ -20,7 +20,7 @@ app.use((req, res, next)=>{
   next()
 });
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://hemaet33.github.io/react-social-client");
+  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173/");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 app.use(cors({
-  origin: "https://hemaet33.github.io/react-social-client",
+  origin: "http://localhost:5173/",
   credentials:true
 }));
 app.use(cookieParser());
