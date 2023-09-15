@@ -20,7 +20,7 @@ app.use((req, res, next)=>{
   next()
 });
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://hemaet33.github.io/react-social-client/");
+  res.setHeader("Access-Control-Allow-Origin", "https://react-mysql-fb.onrender.com/");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 
 app.use(express.json());
 app.use(cors({
-  origin: "https://hemaet33.github.io/react-social-client/",
+  origin: "https://react-mysql-fb.onrender.com/",
   credentials:true
 }));
 app.use(cookieParser());
