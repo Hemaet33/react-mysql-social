@@ -52,7 +52,7 @@ export const deleteUser = (req, res)=>{
   jwt.verify(token, "secretKey",(err, userInfo)=>{
     if(err) return res.status(403).json("Invalid token!");
 
-  const q = "DELETE FROM users WHERE `id`=?";
+  const q = "DELETE FROM users WHERE id=?";
 
   const values = [
     req.params.userId
