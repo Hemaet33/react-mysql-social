@@ -10,7 +10,7 @@ router.get('/search/:name', searchUser);
 router.get('/', getUsers);
 router.get('/friends', getFriends);
 router.patch('/', updateUser);
-router.delete('/:userId', deleteUser);
+router.delete('/', deleteUser);
 
 
 export default router;
