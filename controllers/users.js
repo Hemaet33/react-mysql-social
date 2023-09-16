@@ -55,7 +55,7 @@ export const deleteUser = (req, res)=>{
   const q = "DELETE FROM users WHERE id=?";
 
   const values = [
-    req.body.userId
+    req.params.userId
   ]
 
     db.query(q, values, (err, data)=>{
